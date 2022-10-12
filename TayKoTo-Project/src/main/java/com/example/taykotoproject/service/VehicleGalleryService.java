@@ -18,5 +18,5 @@ public interface VehicleGalleryService {
 
     VehicleGallery getOne(Long id);
 
-    List<VehicleGallery> findAllById(Long id);
+    Page<VehicleGallery> findAllById(Pageable pageable, Long id);
 }
