@@ -27,6 +27,18 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
+    public Page<Vehicle> filter(Pageable pageable,String brand, String body) {
+        if (brand != null && body != null){
+            return vehicleRepository.findByVehicleMakeAndBodyStyle(pageable,brand,body);
+        } else if (brand != null && body == null) {
+            return vehicleRepository.findByVehicleMake(pageable,brand);
+        } else if (brand == null && body != null) {
+            return vehicleRepository.findByBodyStyle(pageable,body);
+        }
+        return vehicleRepository.findAll(pageable);
+    }
+
+    @Override
     public void saveVehicle(Vehicle vehicle) {
         vehicleRepository.save(vehicle);
     }

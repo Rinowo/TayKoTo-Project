@@ -20,4 +20,12 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
             "OR v.vehicleModel " +
             "LIKE %?1%")
     List<Vehicle> search(String keyword);
+
+    Page<Vehicle>findByVehicleMakeAndBodyStyle(Pageable pageable,String brand, String body);
+
+    Page<Vehicle>findByVehicleMake(Pageable pageable,String brand);
+
+    Page<Vehicle>findByBodyStyle(Pageable pageable,String body);
+
+
 }

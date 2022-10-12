@@ -7,6 +7,7 @@ import com.example.taykotoproject.service.VehicleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -31,8 +32,11 @@ public class CarsController {
     @GetMapping(path = {"/cars"})
     public String cars(Model model,
                        @RequestParam(defaultValue = "1") int page,
-                       @RequestParam(defaultValue = "6") int limit) {
-        Page<Vehicle> pagination = vehicleService.getAllLimit(PageRequest.of(page - 1, limit));
+                       @RequestParam(defaultValue = "6") int limit,
+                       @Param("brand")String brand,
+                       @Param("body")String body) {
+        Page<Vehicle> pagination = vehicleService.filter(PageRequest.of(page - 1, limit),brand,body);
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 

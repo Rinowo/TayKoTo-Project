@@ -13,6 +13,8 @@ public interface VehicleService {
 
     List<Vehicle> getAll();
 
+    Page<Vehicle> filter(Pageable pageable,String brand, String body);
+
     void saveVehicle(Vehicle vehicle);
 
     void deleteVehicle(Long id);

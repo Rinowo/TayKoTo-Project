@@ -79,19 +79,17 @@
         <br>
         <br>
         <div class="contact-form">
-            <form action="#" id="contact">
+            <form th:action='@{/cars}' id="contact">
                 <div class="row">
 
                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label>Vehicle Type:</label>
-
-                            <select>
-                                <option value="">-- All --</option>
-                                <option value="">-- SUV --</option>
-                                <option value="">-- Sport --</option>
-                                <option value="">-- Sedan --</option>
-                                <option value="">-- All --</option>
+                            <select name="body">
+                                <option value="" disabled selected hidden>-- All --</option>
+                                <option value="SUV">-- SUV --</option>
+                                <option value="Sport">-- Sport --</option>
+                                <option value="Sedan">-- Sedan --</option>
                             </select>
                         </div>
                     </div>
@@ -100,66 +98,14 @@
                         <div class="form-group">
                             <label>Make:</label>
 
-                            <select>
-                                <option th:align="center" value="">-- All --</option>
-                                <option th:align="center" value=""> BMW </option>
-                                <option th:align="center" value=""> Porsche </option>
-                                <option th:align="center" value=""> Volkswagen </option>
-                                <option th:align="center" value=""> Honda </option>
-                                <option th:align="center" value=""> Mazda </option>
-                                <option th:align="center" value=""> Volvo </option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="form-group">
-                            <label>Price:</label>
-
-                            <select>
-                                <option value="">-- All --</option>
-                                <option value="">-- All --</option>
-                                <option value="">-- All --</option>
-                                <option value="">-- All --</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="form-group">
-                            <label>Fuel:</label>
-
-                            <select>
-                                <option value="">-- All --</option>
-                                <option value="">-- All --</option>
-                                <option value="">-- All --</option>
-                                <option value="">-- All --</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="form-group">
-                            <label>Doors:</label>
-
-                            <select>
-                                <option value="">-- All --</option>
-                                <option value="">-- All --</option>
-                                <option value="">-- All --</option>
-                                <option value="">-- All --</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="form-group">
-                            <label>Number of seats:</label>
-
-                            <select>
-                                <option value="">-- All --</option>
-                                <option value="">-- All --</option>
-                                <option value="">-- All --</option>
-                                <option value="">-- All --</option>
+                            <select name="brand">
+                                <option value="" disabled selected hidden>-- All --</option>
+                                <option th:align="center" value="BMW"> BMW </option>
+                                <option th:align="center" value="Porsche"> Porsche </option>
+                                <option th:align="center" value="Volkswagen"> Volkswagen </option>
+                                <option th:align="center" value="Honda"> Honda </option>
+                                <option th:align="center" value="Mazda"> Mazda </option>
+                                <option th:align="center" value="Volvo"> Volvo </option>
                             </select>
                         </div>
                     </div>
@@ -167,7 +113,12 @@
 
                 <div class="col-sm-4 offset-sm-4">
                     <div class="main-button text-center">
-                        <a href="#">Search</a>
+                        <input type="submit" value="Search" name="Search" />
+                    </div>
+                </div>
+                <div class="col-sm-4 offset-sm-4">
+                    <div class="main-button text-center">
+                        <input type="button" value="Clear" onclick="clearFilter()" />
                     </div>
                 </div>
                 <br>
@@ -240,5 +191,10 @@
 
 <footer th:replace="layout/frag :: footer"></footer>
 <div th:replace="layout/frag :: script"></div>
+<script type="text/javascript">
+    function clearFilter(){
+        window.location= "/cars";
+    }
+</script>
 </body>
 </html>
