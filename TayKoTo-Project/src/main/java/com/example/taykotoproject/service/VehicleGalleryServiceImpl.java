@@ -43,7 +43,7 @@ public class VehicleGalleryServiceImpl implements VehicleGalleryService {
     }
 
     @Override
-    public Page<VehicleGallery> findAllById(Pageable pageable, Long id) {
-        return vehicleGalleryRepository.findAllByVehicleId(pageable,id);
+    public List<VehicleGallery> findAllById(Long id) {
+        return vehicleGalleryRepository.findAllByVehicleId(id);
     }
 }

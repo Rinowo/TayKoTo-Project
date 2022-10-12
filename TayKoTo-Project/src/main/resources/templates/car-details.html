@@ -90,7 +90,6 @@
                     <li><a href="#tabs-0"><i class="fa fa-picture-o"></i> Gallery</a></li>
                     <li><a href='#tabs-1'><i class="fa fa-cog"></i> Vehicle Specs</a></li>
                     <li><a href='#tabs-2'><i class="fa fa-info-circle"></i> Vehicle Description</a></li>
-                    <li><a href='#tabs-3'><i class="fa fa-plus-circle"></i> Vehicle Extras</a></li>
                     <li><a href='#tabs-4'><i class="fa fa-phone"></i> Contact Details</a></li>
                     <li><a href='#tabs-5'><i class="fa fa-car"></i> Order</a></li>
                 </ul>
@@ -99,8 +98,10 @@
                 <section class='tabs-content' style="width: 100%;">
                     <article id="tabs-0">
                         <h4>Gallery</h4>
-                        <div th:each="picture: ${pagination}">
-                            <img th:src="@{${pagination}}" alt="">
+                        <div  th:each="picture: ${gallery}">
+                            <div class="row" style="margin: 10px 10px;">
+                                <img style="width: 500px; height: 400px" th:src="@{${picture.img}}" alt="">
+                            </div>
                         </div>
                     </article>
                     <article id='tabs-1'>
@@ -188,30 +189,6 @@
                             <br> - High level brake light
                             <br></p>
 
-                    </article>
-                    <article id='tabs-3'>
-                        <h4>Vehicle Extras</h4>
-
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p>ABS</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p>Leather seats</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p>Power Assisted Steering</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p>Electric heated seats</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p>New HU and AU</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <p>Xenon headlights</p>
-                            </div>
-                        </div>
                     </article>
                     <article id='tabs-4'>
                         <h4>Contact Details</h4>
