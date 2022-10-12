@@ -46,13 +46,11 @@ public class DetailController {
     @GetMapping(path = "/car/{id}")
     public String detailCar(@PathVariable Long id,
                                         Model model,
-                                        Deal deal,
-                                        @RequestParam(defaultValue = "1") int page,
-                                        @RequestParam(defaultValue = "3") int limit) {
+                                        Deal deal) {
         Optional<Vehicle> vehicle = vehicleService.findById(id);
         Optional<InfoService> info = infoService.findByVehicleId(id);
-        Page<VehicleGallery> gallery = galleryService.findAllById(PageRequest.of(page - 1, limit), id);
 
+        List<VehicleGallery> gallery = galleryService.findAllById(id);
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
@@ -63,9 +61,7 @@ public class DetailController {
         if (info.isPresent() && vehicle.isPresent()) {
             model.addAttribute("vehicle", vehicle.get());
             model.addAttribute("info", info.get());
-            model.addAttribute("pagination", gallery);
-            model.addAttribute("page", page);
-            model.addAttribute("limit", limit);
+            model.addAttribute("gallery", gallery);
             model.addAttribute("user", user);
             model.addAttribute("customer", customer);
             model.addAttribute("deal", deal);
