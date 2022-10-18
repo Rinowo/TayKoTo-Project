@@ -1,10 +1,14 @@
 package com.example.taykotoproject.controller;
 
+import com.example.taykotoproject.common.ScheduleEmailRequest;
+import com.example.taykotoproject.common.ScheduleEmailResponse;
 import com.example.taykotoproject.model.Deal;
 import com.example.taykotoproject.model.InfoService;
 import com.example.taykotoproject.model.Users;
 import com.example.taykotoproject.model.Vehicle;
 import com.example.taykotoproject.service.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -21,10 +25,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 @Controller
 public class ManagementController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ManagementController.class);
 
     @Autowired
     private VehicleServiceImpl vehicleService;
@@ -174,6 +181,17 @@ public class ManagementController {
         deal.setDealId(id);
         deal.setStatus("1");
         dealService.save(deal);
+
+//        ScheduleEmailRequest scheduleEmailRequest
+//        try {
+//            ZonedDateTime dateTime = ZonedDateTime.of(scheduleEmailRequest.getDateTime(), scheduleEmailRequest.getTimeZone());
+//            if (dateTime.isBefore(ZonedDateTime.now())) {
+//                ScheduleEmailResponse scheduleEmailResponse = new ScheduleEmailResponse(false, "dateTime must be after current time");
+//                System.err.println(scheduleEmailResponse);
+//            }
+//
+//
+//        }
 
         return "redirect:/management";
     }

@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface VehicleGalleryRepository extends JpaRepository<VehicleGallery, Long> {
 
-    Page<VehicleGallery> findAllByVehicleId(Pageable pageable, Long id);
+    List<VehicleGallery> findAllByVehicleId(Long id);
 }

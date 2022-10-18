@@ -99,8 +99,8 @@
                 <section class='tabs-content' style="width: 100%;">
                     <article id="tabs-0">
                         <h4>Gallery</h4>
-                        <div th:each="picture: ${pagination}">
-                            <img th:src="@{${pagination}}" alt="">
+                        <div th:each="picture: ${gallery}">
+                            <img th:src="@{${picture.img}}" alt="">
                         </div>
                     </article>
                     <article id='tabs-1'>

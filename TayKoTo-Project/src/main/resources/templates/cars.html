@@ -79,48 +79,51 @@
         <br>
         <br>
         <div class="contact-form">
-            <form th:action='@{/cars}' id="contact">
-                <div class="row">
-
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <form class="" th:action='@{/cars}' id="contact">
+                <div class="row d-flex justify-content-center">
+                    <div style="text-align: center" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                         <div class="form-group">
-                            <label>Vehicle Type:</label>
-                            <select name="body">
-                                <option value="" disabled selected hidden>-- All --</option>
-                                <option value="SUV">-- SUV --</option>
-                                <option value="Sport">-- Sport --</option>
-                                <option value="Sedan">-- Sedan --</option>
+                            <label></label>
+                            <select class="text-center" name="body">
+                                <option value="" disabled selected hidden>-- Vehicle Type --</option>
+                                <option value="SUV"> SUV </option>
+                                <option value="Sport"> Sport </option>
+                                <option value="Sedan"> Sedan </option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="form-group">
-                            <label>Make:</label>
+                    <div style="text-align: center" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group text-center">
+                            <label></label>
 
-                            <select name="brand">
-                                <option value="" disabled selected hidden>-- All --</option>
-                                <option th:align="center" value="BMW"> BMW </option>
-                                <option th:align="center" value="Porsche"> Porsche </option>
-                                <option th:align="center" value="Volkswagen"> Volkswagen </option>
-                                <option th:align="center" value="Honda"> Honda </option>
-                                <option th:align="center" value="Mazda"> Mazda </option>
-                                <option th:align="center" value="Volvo"> Volvo </option>
+                            <select class="text-center" name="brand">
+                                <option value="" disabled selected hidden>-- Brand --</option>
+                                <option value="BMW"> BMW </option>
+                                <option value="Porsche"> Porsche </option>
+                                <option value="Volkswagen"> Volkswagen </option>
+                                <option value="Honda"> Honda </option>
+                                <option value="Mazda"> Mazda </option>
+                                <option value="Volvo"> Volvo </option>
                             </select>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-sm-4 offset-sm-4">
-                    <div class="main-button text-center">
-                        <input type="submit" value="Search" name="Search" />
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="main-button text-center">
+                            <input type="submit" value="Search" name="Search" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="main-button text-center">
+                            <input type="button" value="Clear" onclick="clearFilter()" />
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-4 offset-sm-4">
-                    <div class="main-button text-center">
-                        <input type="button" value="Clear" onclick="clearFilter()" />
-                    </div>
-                </div>
+
+
                 <br>
                 <br>
             </form>
