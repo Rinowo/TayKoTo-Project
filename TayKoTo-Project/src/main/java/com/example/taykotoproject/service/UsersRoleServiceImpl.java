@@ -22,4 +22,11 @@ public class UsersRoleServiceImpl implements UsersRoleService {
     public void deleteById(Long id) {
         usersRoleRepository.deleteById(id);
     }
+
+    @Override
+    public void save(Usersrole usersrole) {
+        usersRoleRepository.save(usersrole);
+    }
+
+
 }

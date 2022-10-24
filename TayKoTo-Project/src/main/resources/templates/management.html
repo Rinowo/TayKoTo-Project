@@ -142,6 +142,7 @@
                                     <th style="text-align: center;" scope="col">Price</th>
                                     <th style="text-align: center;" scope="col">Deposit</th>
                                     <th style="text-align: center;" scope="col">Order Date</th>
+                                    <th style="text-align: center;" scope="col">Deposit Date</th>
                                     <th style="text-align: center;" scope="col">Arrive Date</th>
                                     <th style="text-align: center;" scope="col">Action</th>
                                 </tr>
@@ -159,6 +160,7 @@
                                     <td th:text="${deal.price}" style="text-align: center" ></td>
                                     <td th:text="${deal.deposit}" style="text-align: center" ></td>
                                     <td th:text="${deal.orderDate}" style="text-align: center" ></td>
+                                    <td th:text="${deal.depositDate}" style="text-align: center" ></td>
                                     <td th:text="${deal.arriveDate}" style="text-align: center" ></td>
                                     <td style="text-align: center">
                                         <a class="btn btn-info" th:href="@{/deal/update/{id}(id = ${deal.dealId})}"> Approve</a>

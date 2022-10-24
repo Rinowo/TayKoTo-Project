@@ -1,6 +1,8 @@
 package com.example.taykotoproject.service;
 
+import com.example.taykotoproject.model.Customer;
 import com.example.taykotoproject.model.Users;
+import com.example.taykotoproject.model.Usersrole;
 import com.example.taykotoproject.repository.UsersRepository;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,12 @@ public class UsersServiceImpl implements UsersService {
 
     @Autowired
     private UsersRepository usersRepository;
+
+    @Autowired
+    private UsersRoleServiceImpl usersRoleService;
+
+    @Autowired
+    private CustomerServiceImpl customerService;
 
     @Override
     public Optional<Users> findById(Long id) {
@@ -49,5 +57,29 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public Boolean existsByUsername(String username) {
         return usersRepository.existsByUsername(username);
+    }
+
+    @Override
+    public void processOAuthPostLogin(String username) {
+        Users exisUser = usersRepository.findByUsername(username);
+        if (exisUser == null) {
+            Customer newCustomer = new Customer();
+            customerService.save(newCustomer);
+
+            Users newUser = new Users();
+            newUser.setUsername(username);
+            newUser.setEmail(username);
+            newUser.setProvider("GOOGLE");
+            newUser.setCustomerId(newCustomer.getCustomerId());
+
+            newCustomer.setCustomerEmail(newUser.getUsername());
+            customerService.save(newCustomer);
+            usersRepository.save(newUser);
+
+            Usersrole newUserRole = new Usersrole();
+            newUserRole.setUserId(newUser.getUserId());
+            newUserRole.setRoleId(1L);
+            usersRoleService.save(newUserRole);
+        }
     }
 }

@@ -22,4 +22,6 @@ public interface VehicleService {
     Optional<Vehicle> findById(Long id);
 
     List<Vehicle> search(String keyword);
+
+
 }

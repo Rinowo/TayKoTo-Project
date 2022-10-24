@@ -22,4 +22,6 @@ public interface UsersService {
     Users findByUsername(String name);
 
     Boolean existsByUsername(String username);
+
+    void processOAuthPostLogin(String username);
 }

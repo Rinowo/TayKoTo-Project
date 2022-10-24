@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 @Entity
 public class Users {
     private long userId;
@@ -12,6 +15,8 @@ public class Users {
     private String password;
     private String email;
     private Long customerId;
+
+    private String provider;
 
     private Set<Roles> roles = new HashSet<>();
 
@@ -64,6 +69,16 @@ public class Users {
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
+    }
+
+    @Basic
+    @Column(name = "Provider")
+    public String getProvider() {
+        return provider;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
     }
 
     @Override

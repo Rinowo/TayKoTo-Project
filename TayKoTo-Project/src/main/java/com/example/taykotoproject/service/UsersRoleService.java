@@ -8,4 +8,6 @@ public interface UsersRoleService {
     Optional<Usersrole> findUserRoleByUserId(Long id);
 
     void deleteById(Long id);
+
+    void save(Usersrole usersrole);
 }

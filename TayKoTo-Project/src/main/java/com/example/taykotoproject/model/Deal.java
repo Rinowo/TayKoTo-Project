@@ -16,6 +16,8 @@ public class Deal {
     private Date arriveDate;
     private String status;
 
+    private Date depositDate;
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "Deal_Id")
@@ -85,6 +87,16 @@ public class Deal {
 
     public void setArriveDate(Date arriveDate) {
         this.arriveDate = arriveDate;
+    }
+
+    @Basic
+    @Column(name = "Deposit_Date")
+    public Date getDepositDate() {
+        return depositDate;
+    }
+
+    public void setDepositDate(Date depositDate) {
+        this.depositDate = depositDate;
     }
 
     @Basic
