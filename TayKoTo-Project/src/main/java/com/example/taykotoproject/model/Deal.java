@@ -15,9 +15,7 @@ public class Deal {
     private Date orderDate;
     private Date arriveDate;
     private String status;
-
     private Date depositDate;
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "Deal_Id")
