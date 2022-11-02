@@ -15,9 +15,7 @@ public class Users {
     private String password;
     private String email;
     private Long customerId;
-
     private String provider;
-
     private Set<Roles> roles = new HashSet<>();
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)

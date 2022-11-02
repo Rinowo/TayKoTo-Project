@@ -285,7 +285,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="submit" value="Order now" class="btn btn-primary">
+                                        <input th:href="@{deal/{id}(id = ${deal.dealId})}" type="submit" value="Payment" class="btn btn-primary"></input>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>
@@ -302,5 +302,7 @@
 <footer th:replace="layout/frag :: footer"></footer>
 
 <div th:replace="layout/frag :: script"></div>
+
 </body>
+
 </html>
