@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface DealService {
     List<Deal> getAll();
+    List<Deal> getDealByStatus(String status);
 
     void save(Deal deal);
 

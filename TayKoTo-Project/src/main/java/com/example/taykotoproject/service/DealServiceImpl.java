@@ -20,6 +20,12 @@ public class DealServiceImpl implements DealService {
     }
 
     @Override
+    public List<Deal> getDealByStatus(String status) {
+        return dealRepository.getDealByStatus(status);
+    }
+
+
+    @Override
     public void save(Deal deal) {
         dealRepository.save(deal);
     }

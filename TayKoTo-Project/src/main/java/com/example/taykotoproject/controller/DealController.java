@@ -34,7 +34,6 @@ public class DealController {
 
         List<Deal> list = dealService.getAllById(user.getCustomerId());
 
-
         model.addAttribute("user", user);
         model.addAttribute("deal", list);
         return "deal";

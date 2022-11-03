@@ -48,6 +48,7 @@
                         <div sec:authorize="hasRole('ROLE_ADMIN')">
                             <li><a th:href="@{management}">Management</a></li>
                         </div>
+
                         <div th:case="*">
                             <li style="display: inline-block"><a th:href="@{/deal}">Order</a></li>
                             <li style="display: inline-block"><a th:href="@{/logout}">Logout</a></li>
