@@ -75,9 +75,10 @@
             <div class="" style="width: 15%; padding: 20px; background-color: #3b3b3b">
                 <ul>
                     <li class=""><a style="" href='#tabs-1'><i class="fa fa-car"></i> Vehicles</a>  </li>
-                    <li class=""><a style="" href='#tabs-2'><i class="fa fa-folder"></i> Orders</a> </li>
-                    <li class=""><a style="" href='#tabs-3'><i class="fa fa-users"></i> Customer</a></li>
-                    <li class=""><a style="" href='#tabs-4'><i class="fa fa-user"></i> Users</a>    </li>
+                    <li class=""><a style="" href='#tabs-2'><i class="fa fa-folder"></i> Waiting Orders</a> </li>
+                    <li class=""><a style="" href='#tabs-3'><i class="fa fa-folder"></i> Orders</a> </li>
+                    <li class=""><a style="" href='#tabs-4'><i class="fa fa-users"></i> Customer</a></li>
+                    <li class=""><a style="" href='#tabs-5'><i class="fa fa-user"></i> Users</a>    </li>
                 </ul>
             </div>
             <div class="" style="width: 85%;  background-color: #1b1e21" >
@@ -138,7 +139,43 @@
                                     <th style="text-align: center;" scope="col">Customer Id</th>
                                     <th style="text-align: center;" scope="col">Brand</th>
                                     <th style="text-align: center;" scope="col">Model</th>
-                                    <th style="text-align: center;" scope="col">Status</th>
+                                    <th style="text-align: center;" scope="col">Price</th>
+                                    <th style="text-align: center;" scope="col">Deposit</th>
+                                    <th style="text-align: center;" scope="col">Order Date</th>
+                                    <th style="text-align: center;" scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="deal: ${listDealNotActive}">
+                                    <td style="text-align: center">
+                                        <img style="width: 270px; height: 180px" th:src="@{${deal.vehicle.img}}" alt="">
+                                    </td>
+                                    <td th:text="${deal.dealId}" style="text-align: center"></td>
+                                    <td th:text="${deal.customerId}" style="text-align: center" ></td>
+                                    <td th:text="${deal.vehicle.vehicleMake}" style="text-align: center" ></td>
+                                    <td th:text="${deal.vehicle.vehicleModel}" style="text-align: center" ></td>
+                                    <td th:text="${deal.price}" style="text-align: center" ></td>
+                                    <td th:text="${deal.deposit}" style="text-align: center" ></td>
+                                    <td th:text="${deal.orderDate}" style="text-align: center" ></td>
+                                    <td style="text-align: center">
+                                        <a class="btn btn-info" th:href="@{/deal/approve/{id}(id = ${deal.dealId})}"> Approve</a>
+                                        <a class="btn btn-danger" th:href="@{/deal/delete/{id}(id = ${deal.dealId})}"> Delete</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+                    <article id="tabs-3">
+                        <div style="">
+                            <table class="table table-bordered table-dark">
+                                <thead style="border: 1px solid lightgrey">
+                                <tr>
+                                    <th style="" scope="col"></th>
+                                    <th style="text-align: center;" scope="col">Deal Id</th>
+                                    <th style="text-align: center;" scope="col">Customer Id</th>
+                                    <th style="text-align: center;" scope="col">Brand</th>
+                                    <th style="text-align: center;" scope="col">Model</th>
                                     <th style="text-align: center;" scope="col">Price</th>
                                     <th style="text-align: center;" scope="col">Deposit</th>
                                     <th style="text-align: center;" scope="col">Order Date</th>
@@ -148,7 +185,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="deal: ${listDeal}">
+                                <tr th:each="deal: ${listDealActive}">
                                     <td style="text-align: center">
                                         <img style="width: 270px; height: 180px" th:src="@{${deal.vehicle.img}}" alt="">
                                     </td>
@@ -156,14 +193,13 @@
                                     <td th:text="${deal.customerId}" style="text-align: center" ></td>
                                     <td th:text="${deal.vehicle.vehicleMake}" style="text-align: center" ></td>
                                     <td th:text="${deal.vehicle.vehicleModel}" style="text-align: center" ></td>
-                                    <td th:text="${deal.status}" style="text-align: center" ></td>
                                     <td th:text="${deal.price}" style="text-align: center" ></td>
                                     <td th:text="${deal.deposit}" style="text-align: center" ></td>
                                     <td th:text="${deal.orderDate}" style="text-align: center" ></td>
                                     <td th:text="${deal.depositDate}" style="text-align: center" ></td>
                                     <td th:text="${deal.arriveDate}" style="text-align: center" ></td>
                                     <td style="text-align: center">
-                                        <a class="btn btn-info" th:href="@{/deal/update/{id}(id = ${deal.dealId})}"> Approve</a>
+                                        <a class="btn btn-info" th:href="@{/deal/update/{id}(id = ${deal.dealId})}"> Update</a>
                                         <a class="btn btn-danger" th:href="@{/deal/delete/{id}(id = ${deal.dealId})}"> Delete</a>
                                     </td>
                                 </tr>
@@ -171,7 +207,7 @@
                             </table>
                         </div>
                     </article>
-                    <article id="tabs-3">
+                    <article id="tabs-4">
                         <div style="">
                             <table class="table table-bordered table-dark">
                                 <thead style="border: 1px solid lightgrey">
@@ -199,7 +235,7 @@
                             </table>
                         </div>
                     </article>
-                    <article id='tabs-4'>
+                    <article id='tabs-5'>
                         <div style="">
                             <table class="table table-bordered table-dark">
                                 <thead style="border: 1px solid lightgrey">

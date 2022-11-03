@@ -146,7 +146,7 @@ public class DetailController {
     public String cancel(@PathVariable Long id){
         Optional<Deal> deal = dealService.findById(id);
         dealService.delete(deal.get().getDealId());
-        return "redirect:/";
+        return "redirect:/cars";
 
     }
 
@@ -160,11 +160,15 @@ public class DetailController {
     @PostMapping("/pay/deal/{id}")
     public String pay(HttpServletRequest request, @RequestParam("deposit") double deposit,
                       @PathVariable Long id){
-        Optional<Deal> deal = dealService.findById(id);
-        deal.get().setStatus("1");
+        LocalDate localDate = LocalDate.now();
+        Deal deal = dealService.getOne(id);
+        deal.setStatus("1");
+        deal.setDepositDate(Date.valueOf(localDate));
+        dealService.save(deal);
         String cancelUrl = Utils.getBaseURL(request) + "/" + URL_PAYPAL_CANCEL;
         String successUrl = Utils.getBaseURL(request) + "/" + URL_PAYPAL_SUCCESS;
         try {
+
             Payment payment = paypalService.createPayment(
                     deposit,
                     "USD",
@@ -175,6 +179,7 @@ public class DetailController {
                     successUrl);
             for(Links links : payment.getLinks()){
                 if(links.getRel().equals("approval_url")){
+
                     return "redirect:" + links.getHref();
                 }
             }

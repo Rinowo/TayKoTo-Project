@@ -1,22 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/frag :: head">
+
 </head>
 <body>
 
-    <form method="post" th:action="@{/pay/deal/{id} (id=${deal.dealId})}">
+    <div class="container">
 
-        <input  hidden type="text" th:value="${deal.deposit}" name="deposit"/>
+        <form method="post" th:action="@{/pay/deal/{id} (id=${deal.dealId})}">
+            <input  hidden type="text" th:value="${deal.deposit}" name="deposit"/>
+            <input type="image" src="https://pjtsamedaycouriers.co.uk/wp-content/uploads/2017/12/Paypal-Button.png"
+                  width="150px" alt="submit">
+        </form>
 
-        <button type="submit"> Payment with Paypal </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Online Banking </button>
 
-    </form>
-    <button> Oline Banking </button>
-    <form method="post" th:action="@{/cancel/deal/{id} (id=${deal.dealId})}">
-        <button type="submit"> Cancel</button>
-    </form>
+
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thông tin chuyển khoản</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Tên ngân hàng, số tài khoản</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a type="button" class="btn btn-primary" href="/home">Complete</a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <form method="post" th:action="@{/cancel/deal/{id} (id=${deal.dealId})}">
+            <button type="submit" class="btn btn-secondary" > Cancel </button>
+        </form>
+
+    </div>
+
+    <footer th:replace="layout/frag :: footer"></footer>
+
+    <div th:replace="layout/frag :: script"></div>
 
 </body>
 </html>

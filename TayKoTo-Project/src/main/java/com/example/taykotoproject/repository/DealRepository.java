@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface DealRepository extends JpaRepository<Deal, Long> {
     List<Deal> findAllByCustomerId(Long id);
+    List<Deal> getDealByStatus(String status);
 }

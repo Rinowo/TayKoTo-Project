@@ -25,6 +25,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 
@@ -58,12 +60,15 @@ public class ManagementController {
     public String showCarsManagement(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
+        String NotActive = "0";
+        String Active = "1";
 
         Users user = usersService.findByUsername(username);
 
         model.addAttribute("listVehicle", vehicleService.getAll());
         model.addAttribute("user", user);
-        model.addAttribute("listDeal", dealService.getAll());
+        model.addAttribute("listDealNotActive", dealService.getDealByStatus(NotActive));
+        model.addAttribute("listDealActive", dealService.getDealByStatus(Active));
         model.addAttribute("listCustomer", customerService.getAll());
         model.addAttribute("listUser", usersService.getAll());
         return "management";
@@ -195,6 +200,16 @@ public class ManagementController {
 
         return "redirect:/management";
     }
+    @GetMapping("deal/approve/{id}")
+    public String approve(@PathVariable Long id){
+        LocalDate date = LocalDate.now();
+        Deal deal = dealService.getOne(id);
+        deal.setStatus("1");
+        deal.setDepositDate(Date.valueOf(date));
+        dealService.save(deal);
+        return "redirect:/management";
+    }
+
 
     @GetMapping("/deal/delete/{id}")
     public String deleteDeal(@PathVariable("id") Long id) {
