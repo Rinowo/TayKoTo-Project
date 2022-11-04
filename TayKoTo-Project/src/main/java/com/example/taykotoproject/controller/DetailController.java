@@ -53,6 +53,9 @@ public class DetailController {
     @Autowired
     private VehicleGalleryServiceImpl galleryService;
 
+    @Autowired
+    private EmailService emailService;
+
     @GetMapping(path = "/car/{id}")
     public String detailCar(@PathVariable Long id,
 
@@ -165,6 +168,11 @@ public class DetailController {
         deal.setStatus("1");
         deal.setDepositDate(Date.valueOf(localDate));
         dealService.save(deal);
+
+        Customer customer = customerService.getOne(deal.getCustomerId());
+        emailService.sendMail(customer.getCustomerEmail(),"Thông báo xác nhận đơn hàng",
+        "Đơn hàng của " +customer.getCustomerName()+" đã được xác nhận");
+
         String cancelUrl = Utils.getBaseURL(request) + "/" + URL_PAYPAL_CANCEL;
         String successUrl = Utils.getBaseURL(request) + "/" + URL_PAYPAL_SUCCESS;
         try {

@@ -1,11 +1,6 @@
 package com.example.taykotoproject.controller;
 
-import com.example.taykotoproject.common.ScheduleEmailRequest;
-import com.example.taykotoproject.common.ScheduleEmailResponse;
-import com.example.taykotoproject.model.Deal;
-import com.example.taykotoproject.model.InfoService;
-import com.example.taykotoproject.model.Users;
-import com.example.taykotoproject.model.Vehicle;
+import com.example.taykotoproject.model.*;
 import com.example.taykotoproject.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -52,6 +48,9 @@ public class ManagementController {
 
     @Autowired
     private PasswordEncoder encoder;
+
+    @Autowired
+    private EmailService emailService;
 
     private static final String UPLOADED_FOLDER = "src/main/resources/static/upload/";
 
@@ -207,6 +206,11 @@ public class ManagementController {
         deal.setStatus("1");
         deal.setDepositDate(Date.valueOf(date));
         dealService.save(deal);
+
+        Customer customer = customerService.getOne(deal.getCustomerId());
+        emailService.sendMail(customer.getCustomerEmail(),"Thông báo xác nhận đơn hàng",
+        "Đơn hàng của "+customer.getCustomerName()+" đã được xác nhận");
+
         return "redirect:/management";
     }
 
