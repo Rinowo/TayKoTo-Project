@@ -8,16 +8,7 @@
 
 <body>
 <!-- ***** Preloader Start *****-->
-<div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-        <span class="dot"></span>
-        <div class="dots">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-</div>
+<div th:replace="layout/frag :: preloader"></div>
 
 <!-- ***** Header Area Start ***** -->
 <header class="header-area header-sticky">
@@ -78,6 +69,7 @@
             <th style="text-align: center;" scope="col">Model</th>
             <th style="text-align: center;" scope="col">Price</th>
             <th style="text-align: center;" scope="col">Deposit</th>
+            <th style="text-align: center;" scope="col">Status</th>
             <th style="text-align: center;" scope="col">Order Date</th>
             <th style="text-align: center;" scope="col">Arrive Date</th>
         </tr>
@@ -89,8 +81,9 @@
             </td>
             <td th:text="${deal.vehicle.vehicleMake}" style="text-align: center" ></td>
             <td th:text="${deal.vehicle.vehicleModel}" style="text-align: center" ></td>
-            <td th:text="${deal.price}" style="text-align: center" ></td>
-            <td th:text="${deal.deposit}" style="text-align: center" ></td>
+            <td th:text="${deal.price} + ' vnđ'" style="text-align: center" ></td>
+            <td th:text="${deal.deposit} + ' vnđ'" style="text-align: center" ></td>
+            <td th:text="${deal.status}" style="text-align: center"></td>
             <td th:text="${deal.orderDate}" style="text-align: center" ></td>
             <td th:text="${deal.arriveDate}" style="text-align: center" ></td>
         </tr>

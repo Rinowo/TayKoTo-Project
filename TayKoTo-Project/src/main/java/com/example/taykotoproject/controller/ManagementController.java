@@ -186,6 +186,12 @@ public class ManagementController {
         deal.setStatus("1");
         dealService.save(deal);
 
+        if (deal.getArriveDate() != null){
+            Customer customer = customerService.getOne(deal.getCustomerId());
+            emailService.sendMail(customer.getCustomerEmail(),"Thông báo ngày xe về",
+            "Đơn đặt xe của "+customer.getCustomerName()+" sẽ về vào ngày"+deal.getArriveDate());
+        }
+
 //        ScheduleEmailRequest scheduleEmailRequest
 //        try {
 //            ZonedDateTime dateTime = ZonedDateTime.of(scheduleEmailRequest.getDateTime(), scheduleEmailRequest.getTimeZone());
